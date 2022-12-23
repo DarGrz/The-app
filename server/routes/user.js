@@ -44,7 +44,7 @@ router.post("/register", validation(userSchemaVal), async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+router.all("/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     res.status(400).json({ msg: "Something is missing" });
@@ -111,7 +111,7 @@ router.get("/users/:user", async (req, res) => {
   const user = await Users.findById(id);
 
   if (!user) {
-    return res.status(400).json({ msg: "user not found" });
+    return res.status(400).json({ msg: "user not found", user });
   }
   res.status(200).json(user);
 });
