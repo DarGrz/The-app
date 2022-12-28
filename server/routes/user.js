@@ -33,13 +33,15 @@ router.post("/register", validation(userSchemaVal), async (req, res) => {
   });
   bcrypt.hash(password, 7, async (err, hash) => {
     if (err) {
-      return res.status(400).json({ msg: "error while saving the password" });
+      return res
+        .status(400)
+        .json({ message: "error while saving the password" });
     }
     newUser.password = hash;
     const savedUserRes = await newUser.save();
     delete savedUserRes.password;
     if (savedUserRes) {
-      return res.status(200).json({ msg: " User successfully saved" });
+      return res.status(200).json({ message: " User successfully saved" });
     }
   });
 });
@@ -54,16 +56,16 @@ router.all("/login", async (req, res) => {
   const user = await Users.findOne({ email: email });
 
   if (!user) {
-    return res.status(400).json({ msg: "User not found" });
+    return res.status(400).json({ message: "User not found" });
   }
   //Comparing password with saved hashed password
   const matchPassword = await bcrypt.compare(password, user.password);
   if (!matchPassword) {
-    return res.status(400).json({ msg: "Invalid credentials" });
+    return res.status(400).json({ message: "Invalid credentials" });
   } else {
     const payload = JSON.stringify(user);
     const token = jwt.sign({ payload: payload }, process.env.TOKEN, {
-      expiresIn: "15s",
+      expiresIn: "2h",
     });
     const refreshToken = jwt.sign(
       { payload: payload },
@@ -73,7 +75,7 @@ router.all("/login", async (req, res) => {
 
     return res
       .status(200)
-      .json({ msg: "You have logged in", token, refreshToken, user });
+      .json({ message: "You have logged in", token, refreshToken, user });
   }
 });
 

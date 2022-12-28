@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import router from "./routes/user.js";
+import createPlaceRouter from "./routes/places.js";
+
 dotenv.config();
 
 mongoose
@@ -21,5 +23,6 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 app.use("/", router);
+app.use("/", createPlaceRouter);
 
 app.listen(process.env.PORT);

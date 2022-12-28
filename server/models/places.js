@@ -2,34 +2,44 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const placeSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const placeSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
 
-  dysc: {
-    type: String,
-    required: true,
+    description: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    full: false,
+    about: {
+      type: String,
+    },
+    playersNum: {
+      type: Number,
+    },
+    reservePlayersNum: {
+      type: Number,
+    },
+    rating: {
+      type: Number,
+    },
+    nextGame: {
+      type: Date,
+    },
+    players: [],
+    reservePlayers: [],
+    creator: {
+      type: String,
+    },
   },
-  about: {
-    type: String,
-  },
-  playersNum: {
-    type: Number,
-    required: true,
-  },
-  reservePlayersNum: {
-    type: Number,
-  },
-  rating: {
-    type: Number,
-  },
-  nextGame: {
-    type: Date,
-  },
-  players: [],
-  reservePlayers: [],
-});
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Places", placeSchema);
+export default mongoose.model("Places", placeSchema);
