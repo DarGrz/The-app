@@ -24,7 +24,7 @@ const placeSchema = new Schema(
     playersNum: {
       type: Number,
     },
-    reservePlayersNum: {
+    maxReservewPlayers: {
       type: Number,
     },
     rating: {
@@ -33,8 +33,12 @@ const placeSchema = new Schema(
     nextGame: {
       type: Date,
     },
-    players: [],
-    reservePlayers: [],
+    players: {
+      type: Array,
+    },
+    reservePlayers: {
+      type: Array,
+    },
     creator: {
       type: String,
     },

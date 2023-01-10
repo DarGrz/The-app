@@ -9,6 +9,9 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    admin: {
+      type: Boolean,
+    },
     lastName: {
       type: String,
       required: true,
