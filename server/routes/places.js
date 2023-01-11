@@ -3,54 +3,29 @@ import Places from "../models/places.js";
 import validation from "../middleware/validation.js";
 import createPlaceSchemaValidation from "../validations/createPlaceValidation.js";
 import { authMiddleware } from "../middleware/auth.js";
+import {
+  createPlace,
+  findPlace,
+  getAllPlaces,
+  userPlaces,
+  joinPlace,
+  leavePlace,
+} from "../controllers/placeContoller.js";
 
-const createPlaceRouter = express.Router();
+const router = express.Router();
 
-createPlaceRouter.post(
+router.post(
   "/create-place",
   validation(createPlaceSchemaValidation),
-  async (req, res) => {
-    const {
-      name,
-      description,
-      location,
-      about,
-      playersNum,
-      reservePlayersNum,
-      creator,
-    } = req.body;
-
-    const place = await Places.findOne({ name }); // Finding user in DB by email
-    if (place) {
-      return res
-        .status(400)
-        .json({ message: "Place already exists or name already taken." });
-    }
-
-    const newPlace = new Places({
-      name,
-      description,
-      location,
-      about,
-      playersNum,
-      reservePlayersNum,
-      creator,
-    });
-
-    const newPlaceSavedRes = await newPlace.save();
-
-    if (newPlaceSavedRes) {
-      return res.status(200).json({ msg: " New place successfully saved" });
-    }
-  }
+  createPlace
 );
 
-createPlaceRouter.get("/places", async (req, res) => {
-  const places = await Places.find();
-  if (!places) {
-    return res.status(401).json({ msg: "No places found" });
-  }
-  res.status(200).json(places);
-});
+router.get("/all-places", getAllPlaces);
 
-export default createPlaceRouter;
+router.get("/user-places/:userId", userPlaces);
+router.patch("/join-place/:placeId", joinPlace);
+router.patch("/leave-place/:placeId", leavePlace);
+
+router.get("/place/:placeId", findPlace);
+
+export default router;
