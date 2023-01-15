@@ -22,7 +22,7 @@ router.post(
 
 router.get("/all-places", getAllPlaces);
 
-router.get("/user-places/:userId", userPlaces);
+router.get("/user-places/:userId", userPlaces); // Places created by user
 router.patch("/join-place/:placeId", joinPlace);
 router.patch("/leave-place/:placeId", leavePlace);
 
