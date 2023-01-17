@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // All Places Accessible for eveeryone
 
@@ -26,7 +27,9 @@ const AllPlaces = () => {
       <div>
         {places.map((place) => (
           <div key={place._id}>
-            <p>{place.name}</p>
+            <Link to={`/${place._id}`}>
+              <p>{place.name}</p>
+            </Link>
             <p>{place.creator}</p>
             <p>{place.createdAt}</p>
             <p>Users joined: {place.users.length} </p>
