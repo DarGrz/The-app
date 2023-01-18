@@ -24,6 +24,7 @@ const AllPlaces = () => {
 
   return (
     <>
+      <h2>All Places</h2>
       <div>
         {places.map((place) => (
           <div key={place._id}>

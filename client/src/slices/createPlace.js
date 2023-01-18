@@ -9,6 +9,7 @@ export const createPlace = createAsyncThunk(
     try {
       const response = await placeService.createPlace(name, creator);
       thunkAPI.dispatch(setMessage(response.data.message));
+      console.log("Creating Place setMessage");
       return response.data;
     } catch (error) {
       const message =
