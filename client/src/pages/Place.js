@@ -12,8 +12,8 @@ const Place = () => {
   const [place, setPlace] = useState([]);
   const location = useLocation();
   const placeId = location.pathname.substring(1);
-  console.log(placeId, place);
   const userId = currentUser.user._id;
+  console.log(placeId, place);
 
   useEffect(() => {
     const getPlace = async () => {
@@ -21,6 +21,7 @@ const Place = () => {
         const response = await axios.get(
           `http://localhost:5000/places/place/${placeId}`
         );
+        setPlace(response.data);
         console.log(response.data);
       } catch (error) {
         console.log(error.message);
@@ -29,22 +30,24 @@ const Place = () => {
     getPlace();
   }, []);
 
-  const joinPlaceHandler = (userId) => {
-    return axios.put(`http://localhost:5000/places/join-place/${place._id}`, {
-      userId,
-    });
+  const joinPlaceHandler = () => {
+    return axios
+      .patch(`http://localhost:5000/places/join-place/${place._id}`, {
+        userId,
+      })
+      .then(() => {
+        window.location.reload();
+      });
   };
-  // const leavePlaceHandler = async () => {
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:5000/places/leave-place/${user._id}`
-  //     );
-  //     setPlaces(response.data);
-  //     console.log(places);
-  //   } catch (error) {
-  //     console.log("Error from UsersList");
-  //   }
-  // };
+  const leavePlaceHandler = () => {
+    return axios
+      .patch(`http://localhost:5000/places/leave-place/${place._id}`, {
+        userId,
+      })
+      .then(() => {
+        window.location.reload();
+      });
+  };
 
   return (
     <div>
@@ -52,7 +55,7 @@ const Place = () => {
       <p>Creator {place.creator}</p>
       <p>Players: {place.users}</p>
       <button onClick={joinPlaceHandler}>Join Place</button>
-      {/* <button onClick={leavePlaceHandler}></button> */}
+      <button onClick={leavePlaceHandler}>Leave Place</button>
     </div>
   );
 };

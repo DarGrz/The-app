@@ -55,6 +55,7 @@ export const userPlaces = async (req, res) => {
 export const joinPlace = async (req, res) => {
   const placeId = req.params.placeId;
   const userId = req.body.userId;
+  console.log(userId);
   try {
     const place = await Place.findByIdAndUpdate(placeId, {
       $push: { users: userId },
