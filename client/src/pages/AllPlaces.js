@@ -28,7 +28,7 @@ const AllPlaces = () => {
       <div>
         {places.map((place) => (
           <div key={place._id}>
-            <Link to={`/${place._id}`}>
+            <Link to={`/all-places/${place._id}`}>
               <p>{place.name}</p>
             </Link>
             <p>{place.creator}</p>

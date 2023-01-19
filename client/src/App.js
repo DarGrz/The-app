@@ -16,6 +16,7 @@ import UserPlaces from "./pages/UserPlaces";
 import { useSelector } from "react-redux";
 import AllPlaces from "./pages/AllPlaces";
 import Place from "./pages/Place";
+import OtherUser from "./pages/OtherUser";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -36,7 +37,8 @@ function App() {
           <Route path="/create-place" element={<CreatePlace />} />
           <Route path="/user-places" element={<UserPlaces />} />
           <Route path="/all-places" element={<AllPlaces />} />
-          <Route path="/:place" element={<Place />} />
+          <Route path="/all-places/:place" element={<Place />} />
+          <Route path="/all-users/:user" element={<OtherUser />} />
         </Routes>
       </Router>
     </>

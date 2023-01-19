@@ -7,6 +7,9 @@ const placeSchema = new Schema(
     name: {
       type: String,
     },
+    address: {
+      type: String,
+    },
     creator: {
       type: String,
     },

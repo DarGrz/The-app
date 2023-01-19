@@ -1,9 +1,8 @@
-import { response } from "express";
 import Place from "../models/places.js";
 
 export const createPlace = async (req, res) => {
   try {
-    const { name, creator } = req.body;
+    const { name, address, creator } = req.body;
 
     const place = await Place.findOne({ name }); // finding place in DB by name
     if (place) {
@@ -14,6 +13,7 @@ export const createPlace = async (req, res) => {
 
     const newPlace = new Place({
       name,
+      address,
       creator,
     });
 

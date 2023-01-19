@@ -11,9 +11,10 @@ const Place = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [place, setPlace] = useState([]);
   const location = useLocation();
-  const placeId = location.pathname.substring(1);
+  // const placeId = location.pathname.substring(12);
+  const placeId = location.pathname.split("/")[2];
   const userId = currentUser.user._id;
-  console.log(placeId, place);
+  console.log(location);
 
   useEffect(() => {
     const getPlace = async () => {
@@ -54,6 +55,7 @@ const Place = () => {
       <p>Name: {place.name}</p>
       <p>Creator {place.creator}</p>
       <p>Players: {place.users}</p>
+      <p>Added: {place.createdAt}</p>
       <button onClick={joinPlaceHandler}>Join Place</button>
       <button onClick={leavePlaceHandler}>Leave Place</button>
     </div>
