@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 const Place = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [place, setPlace] = useState([]);
+  const [exist, setExist] = useState(false);
   const location = useLocation();
   // const placeId = location.pathname.substring(12);
   const placeId = location.pathname.split("/")[2];
@@ -30,6 +31,14 @@ const Place = () => {
     };
     getPlace();
   }, []);
+
+  const userExists = () => {
+    if (place.users.filter((user) => user._id === userId)) {
+      setExist(true);
+    }
+  };
+
+  console.log(exist);
 
   const joinPlaceHandler = () => {
     return axios

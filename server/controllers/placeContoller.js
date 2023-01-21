@@ -52,12 +52,12 @@ export const userPlaces = async (req, res) => {
   }
 };
 
-export const joinPlace = async (req, res, next) => {
+export const joinPlace = async (req, res) => {
   const placeId = req.params.placeId;
   const userId = req.body.userId;
   try {
     const place = await Place.findByIdAndUpdate(placeId, {
-      $push: { users: userId },
+      $addToSet: { users: userId }, //$addtoset updates joined users array and ommits already existed
     });
     res.status(200).json(place);
   } catch (error) {
