@@ -22,7 +22,8 @@ function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   return (
     <>
-      <h1>THE APP</h1>
+      <h1>Goffer - Go out, Find friends, Enter rivarly!</h1>
+
       <Router>
         <Nav />
         <Routes>

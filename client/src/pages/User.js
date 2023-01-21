@@ -18,13 +18,13 @@ const User = () => {
         </h3>
       </header>
       <p>
-        <strong>Id:</strong> {currentUser.user._id}
-      </p>
-      <p>
         <strong>Email:</strong> {currentUser.user.email}
       </p>
       <p>
-        <strong>User Since:</strong> {currentUser.user.createdAt}
+        <strong>User Since:</strong> {currentUser.user.createdAt.split("T")[0]}
+      </p>
+      <p>
+        <strong>Id:</strong> {currentUser.user._id}
       </p>
 
       {/* Favorites */}

@@ -25,7 +25,10 @@ const OtherUser = () => {
   return (
     <div>
       <h2>Other User</h2>
-      {user.firstName} {user.lastName}
+      <p>
+        Name: {user.firstName} {user.lastName}
+      </p>
+      <p>User since: {user.createdAt.split("T")[0]} </p>
     </div>
   );
 };
