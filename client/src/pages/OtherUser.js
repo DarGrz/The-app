@@ -16,7 +16,6 @@ const OtherUser = () => {
         );
         setUser(response.data);
         setCreationDate(response.data.createdAt.split("T")[0]);
-        console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }

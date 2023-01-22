@@ -21,6 +21,7 @@ const CreatePlace = () => {
   const initialValues = {
     name: "",
     creator: "",
+    address: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -35,7 +36,7 @@ const CreatePlace = () => {
   });
 
   const handleCreatePlace = (formValue) => {
-    const { name } = formValue;
+    const { name, address } = formValue;
 
     setSuccessfull(false);
     setCreatedPlaceData(formValue);
@@ -43,6 +44,7 @@ const CreatePlace = () => {
     dispatch(
       createPlace({
         name,
+        address,
         creator,
       })
     )
@@ -73,6 +75,19 @@ const CreatePlace = () => {
                     <Field name="name" type="text" className="form-control" />
                     <ErrorMessage
                       name="name"
+                      component="div"
+                      className="alert alert-danger"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="address">address</label>
+                    <Field
+                      name="address"
+                      type="text"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="address"
                       component="div"
                       className="alert alert-danger"
                     />

@@ -5,9 +5,9 @@ import placeService from "../services/createPlaceService";
 
 export const createPlace = createAsyncThunk(
   "createPlace",
-  async ({ name, creator }, thunkAPI) => {
+  async ({ name, address, creator }, thunkAPI) => {
     try {
-      const response = await placeService.createPlace(name, creator);
+      const response = await placeService.createPlace(name, address, creator);
       thunkAPI.dispatch(setMessage(response.data.message));
       console.log("Creating Place setMessage");
       return response.data;
@@ -26,6 +26,7 @@ export const createPlace = createAsyncThunk(
 
 const initialState = {
   name: "",
+  address: "",
   creator: "",
 };
 

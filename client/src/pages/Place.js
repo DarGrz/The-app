@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Player from "../components/Player";
 
 // Place page with all it's informations
 
@@ -10,12 +11,12 @@ import { useSelector } from "react-redux";
 const Place = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [place, setPlace] = useState([]);
-  const [exist, setExist] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
   const location = useLocation();
   // const placeId = location.pathname.substring(12);
   const placeId = location.pathname.split("/")[2];
   const userId = currentUser.user._id;
-  console.log(location);
 
   useEffect(() => {
     const getPlace = async () => {
@@ -24,21 +25,13 @@ const Place = () => {
           `http://localhost:5000/places/place/${placeId}`
         );
         setPlace(response.data);
-        console.log(response.data);
+        setUsers(response.data.users);
       } catch (error) {
         console.log(error.message);
       }
     };
     getPlace();
   }, []);
-
-  const userExists = () => {
-    if (place.users.filter((user) => user._id === userId)) {
-      setExist(true);
-    }
-  };
-
-  console.log(exist);
 
   const joinPlaceHandler = () => {
     return axios
@@ -47,6 +40,11 @@ const Place = () => {
       })
       .then(() => {
         window.location.reload();
+      })
+      .catch((error) => {
+        if (error.response) {
+          setError(error.response.data);
+        }
       });
   };
   const leavePlaceHandler = () => {
@@ -61,11 +59,16 @@ const Place = () => {
 
   return (
     <div>
-      <p>Name: {place.name}</p>
-      <p>Creator {place.creator}</p>
-      <p>Players: {place.users}</p>
-      <p>Added: {place.createdAt}</p>
+      <h2>Place</h2>
+      <h4>{place.name}</h4>
+      <p>Address: {place.address}</p>
+      <p></p>
+      <p>Players:</p>
+      {users.map((user) => (
+        <Player userId={user} key={user} />
+      ))}
       <button onClick={joinPlaceHandler}>Join Place</button>
+      {error && <p>{error}</p>}
       <button onClick={leavePlaceHandler}>Leave Place</button>
     </div>
   );

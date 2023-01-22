@@ -14,11 +14,12 @@ const Nav = () => {
   return (
     <nav>
       <ul>
-        {!isLoggedIn && (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        )}
+        <li>
+          <Link to="/all-users">Users</Link>
+        </li>
+        <li>
+          <Link to="/all-places">Places</Link>
+        </li>
         {isLoggedIn && (
           <>
             <li>
@@ -27,33 +28,28 @@ const Nav = () => {
             <li>
               <Link to="/user-places">My places</Link>
             </li>
-          </>
-        )}
-        {!isLoggedIn && (
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-        )}
-        {isLoggedIn && (
-          <>
-            <li>
-              <Link to="/login" onClick={logOut} disabled>
-                Logout
-              </Link>
-            </li>
             <li>
               <Link to="/login" disabled>
                 My Account
               </Link>
             </li>
+            <li>
+              <Link to="/login" onClick={logOut} disabled>
+                Logout
+              </Link>
+            </li>
           </>
         )}
-        <li>
-          <Link to="/all-users">All Users</Link>
-        </li>
-        <li>
-          <Link to="/all-places">All Places</Link>
-        </li>
+        {!isLoggedIn && (
+          <>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

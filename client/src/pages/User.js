@@ -10,8 +10,8 @@ const User = () => {
   console.log(currentUser.user);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
+    <div>
+      <header>
         <h3>
           <strong>{currentUser.user.firstName.toUpperCase() + " "}</strong>
           <strong>{currentUser.user.lastName.toUpperCase() + " "}</strong>

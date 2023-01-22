@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { register } from "../slices/auth";
@@ -11,7 +12,7 @@ const Register = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
@@ -62,6 +63,7 @@ const Register = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        navigate("/login");
       })
       .catch(() => {
         setSuccessful(false);
@@ -86,7 +88,7 @@ const Register = () => {
             {!successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="firstName">FirstName</label>
+                  <label htmlFor="firstName">Name</label>
                   <Field
                     name="firstName"
                     type="text"
@@ -100,12 +102,8 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="lasttName">lasttName</label>
-                  <Field
-                    name="lasttName"
-                    type="text"
-                    className="form-control"
-                  />
+                  <label htmlFor="lastName">Last Name</label>
+                  <Field name="lastName" type="text" className="form-control" />
                   <ErrorMessage
                     name="lastName"
                     component="div"

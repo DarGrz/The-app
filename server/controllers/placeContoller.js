@@ -56,10 +56,18 @@ export const joinPlace = async (req, res) => {
   const placeId = req.params.placeId;
   const userId = req.body.userId;
   try {
-    const place = await Place.findByIdAndUpdate(placeId, {
-      $addToSet: { users: userId }, //$addtoset updates joined users array and ommits already existed
-    });
-    res.status(200).json(place);
+    let place = await Place.findByIdAndUpdate(placeId);
+    const userExists = place.users.find((user) => user === userId);
+    if (userExists) {
+      const msg = "You have already joined this event";
+      return res.status(400).json(msg);
+    } else {
+      place = await Place.findByIdAndUpdate(placeId, {
+        $addToSet: { users: userId }, //$addtoset updates joined users array and ommits already existed
+      });
+
+      res.status(200).json(place);
+    }
   } catch (error) {
     res.status(500).json(error);
   }
