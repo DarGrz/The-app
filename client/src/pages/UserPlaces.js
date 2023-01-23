@@ -33,6 +33,7 @@ const UserPlaces = () => {
               <p>{place.name}</p>
             </Link>
             <p>{place.users}</p>
+
             <p>{place.users.length}</p>
           </div>
         ))}

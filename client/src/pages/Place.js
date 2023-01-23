@@ -12,6 +12,7 @@ const Place = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [place, setPlace] = useState([]);
   const [users, setUsers] = useState([]);
+  const [created, setCreated] = useState("");
   const [error, setError] = useState("");
   const location = useLocation();
   // const placeId = location.pathname.substring(12);
@@ -26,6 +27,7 @@ const Place = () => {
         );
         setPlace(response.data);
         setUsers(response.data.users);
+        setCreated(response.data.createdAt.split("T")[0]);
       } catch (error) {
         console.log(error.message);
       }
@@ -67,6 +69,7 @@ const Place = () => {
       {users.map((user) => (
         <Player userId={user} key={user} />
       ))}
+      <p>Added: {created}</p>
       <button onClick={joinPlaceHandler}>Join Place</button>
       {error && <p>{error}</p>}
       <button onClick={leavePlaceHandler}>Leave Place</button>

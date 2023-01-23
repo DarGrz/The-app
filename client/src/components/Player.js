@@ -9,7 +9,6 @@ const Player = ({ userId }) => {
         const response = await axios.get(
           `http://localhost:5000/users/${userId}`
         );
-        console.log(player);
         setPlayer(response.data);
       } catch (error) {
         console.log(error.message);
