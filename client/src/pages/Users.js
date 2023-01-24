@@ -10,7 +10,6 @@ const Users = () => {
       .get("http://localhost:5000/users")
       .then((res) => {
         setUsers(res.data);
-        console.log(users);
       })
       .catch((err) => {
         console.log("Error from UsersList");

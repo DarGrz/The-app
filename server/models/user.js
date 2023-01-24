@@ -55,8 +55,12 @@ const userSchema = new Schema(
     rating: {
       type: Number,
     },
-    friends: [],
-    favorites: [],
+    friends: {
+      type: Array,
+    },
+    favorites: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );

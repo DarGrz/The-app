@@ -20,9 +20,11 @@ import OtherUser from "./pages/OtherUser";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
+
   return (
     <>
-      <h1>Goffer - Go out, Find friends, Enter rivarly!</h1>
+      <h1>GOFFER</h1>
+      <h4>Go out, Find friends, Enter rivarly!</h4>
 
       <Router>
         <Nav />

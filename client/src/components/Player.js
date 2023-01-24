@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const Player = ({ userId }) => {
   const [player, setPlayer] = useState([]);
+
   useEffect(() => {
     const getUser = async () => {
       try {

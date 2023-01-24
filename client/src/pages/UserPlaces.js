@@ -15,7 +15,6 @@ const UserPlaces = () => {
           `http://localhost:5000/places/user-places/${user._id}`
         );
         setPlaces(response.data);
-        console.log(places);
       } catch (error) {
         console.log("Error from UsersList");
       }
