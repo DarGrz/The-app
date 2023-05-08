@@ -1,11 +1,25 @@
+<h1>The App (work name)</h1>
+<br>
+<h3>Features</h3>
+<ul>
+<li>User authentication.</li>
+<li>User profile management.</li>
+<li>Add places.</li>
+<li>Join meeting rooms.</li>
+<li>Search users</li>
+<li>Search places</li>
+</ul>
+<br>
+<h3>Stack</h3>
+<ul>
+<li>JS</li>
+<li>Redux</li>
+<li>Express</li>
+<li>Node.js</li>
+<li>React.js</li>
+<li>React Router DOM</li>
+<li>HTML</li>
+<li>CSS</li>
+</ul>
+<br>
 
-    <h1>Welcome to My App</h1>
-    <p>This is a web application built using React.js, Node, Redux, React Router, and Express.</p>
-    <h2>Getting Started</h2>
-    <p>To get started, you will need to:</p>
-    <ol>
-      <li>Clone the repository</li>
-      <li>Install dependencies</li>
-      <li>Start the server</li>
-      <li>Start the client</li>
-    </ol>
